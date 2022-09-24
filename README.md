@@ -13,5 +13,5 @@ Drag RobloxPlayerLauncher.exe into the ``robloxlauncherpatcher.exe`` and it will
 
 ## Credits
 
-Forked from: [vdsk]<https://github.com/vdsk/gr2dpatcher>
+Forked from: [vdsk]<https://github.com/vdsk/gr2dpatcher>\
 Method found by: [AntiBoomz]<https://github.com/AntiBoomz>
