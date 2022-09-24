@@ -104,27 +104,39 @@ int main(int argc, char* argv[])
             std::vector<unsigned char> buffer(std::istreambuf_iterator<char>(infile), {});
             infile.close();
 
+            
+
             DWORD ins = scanIdaStyle("75 74 00 00 00 61 70 70 00", reinterpret_cast<unsigned char *>(&buffer[0]), buffer.size());
-            patchBuffer(ins, "75 74 00 00 00 61 70 61 00");
+            if (ins) {
+                std::ofstream backup;
 
-            std::ofstream outfile;
-            outfile.open(argv[1], std::ios::trunc | std::ios::binary);
-            outfile.write(reinterpret_cast<char*>(&buffer[0]), buffer.size());
-            outfile.close();
+                backup.open("RobloxPlayerLauncher.exe.bak", std::ios::trunc | std::ios::binary);
+                backup.write(reinterpret_cast<char *>(&buffer[0]), buffer.size());
+                backup.close();
 
-            std::string done;
-            std::cout << "Patched binary!" << std::endl;
-            std::getline(std::cin, done);
+                std::cout << "Found pattern\n";
+                patchBuffer(ins, "75 74 00 00 00 61 70 61 00");
+
+                std::ofstream outfile;
+                outfile.open(argv[1], std::ios::trunc | std::ios::binary);
+                outfile.write(reinterpret_cast<char *>(&buffer[0]), buffer.size());
+                outfile.close();
+
+                std::cout << "Patched binary!\n" << std::endl;
+            } else {
+                std::cout << "No pattern found / Already patched!\n";
+            }
         }
         else {
-            std::cout << "Bad";
-
+            std::cout << "Bad\n";
         }
-
     }
     else {
-        std::cout << "File not binary :(";
+        std::cout << "Drag and drop RobloxPlayerLauncher.exe into the executable to patch it!\n";
     }
+    std::string done;
+    std::cout << "Press enter to exit...\n";
+    std::getline(std::cin, done);
 }
 
 //0F 84 ? ? ? ? F3 0F 10 0D ? ? ? ?
