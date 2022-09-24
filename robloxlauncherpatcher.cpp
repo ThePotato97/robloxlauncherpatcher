@@ -103,30 +103,28 @@ int main(int argc, char* argv[])
             // copies all data into buffer
             std::vector<unsigned char> buffer(std::istreambuf_iterator<char>(infile), {});
             infile.close();
-            
-            DWORD nig = scanIdaStyle("0F 84 ? ? ? ? F3 0F 10 0D",reinterpret_cast<unsigned char*>(&buffer[0]), buffer.size());
-            patchBuffer(nig, "0F 85");
-            nig = scanIdaStyle("89 81 ? ? ? ? 33 C0 5D C2 08 00 CC CC CC CC CC CC CC CC CC CC CC 55 8B EC 83 EC 34", reinterpret_cast<unsigned char*>(&buffer[0]), buffer.size());
-            patchBuffer(nig, "90 90 90 90 90 90");
 
+            DWORD ins = scanIdaStyle("75 74 00 00 00 61 70 70 00", reinterpret_cast<unsigned char *>(&buffer[0]), buffer.size());
+            patchBuffer(ins, "75 74 00 00 00 61 70 61 00");
 
             std::ofstream outfile;
-            outfile.open("Gr2D_DX9patch.dll", std::ios::trunc | std::ios::binary);
+            outfile.open(argv[1], std::ios::trunc | std::ios::binary);
             outfile.write(reinterpret_cast<char*>(&buffer[0]), buffer.size());
             outfile.close();
 
+            std::string done;
+            std::cout << "Patched binary!" << std::endl;
+            std::getline(std::cin, done);
         }
         else {
-            std::cout << "lol retard";
+            std::cout << "Bad";
 
         }
 
     }
     else {
-        std::cout << "cringe World!\n";
+        std::cout << "File not binary :(";
     }
-
-    
 }
 
 //0F 84 ? ? ? ? F3 0F 10 0D ? ? ? ?

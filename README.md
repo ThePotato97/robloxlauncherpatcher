@@ -1,8 +1,14 @@
-# gr2dpatcher
-patches maplestory gr2d dll to have non stretched 1080p, wont work for gms without a hash check bypass
+# RobloxLauncherPatcher
 
-# usage
+Patches RobloxPlayerLauncher.exe to remove the new roblox app
 
-drag gr2d.dll into the patcher exe it will spit out a new gr2d_patched file
+## Building
 
-![alt tag](https://i.imgur.com/qeD0koU.gif)
+Follow the instructions here to build the application
+<https://learn.microsoft.com/en-us/cpp/build/walkthrough-compiling-a-native-cpp-program-on-the-command-line>
+
+## Usage
+
+Drag RobloxPlayerLauncher.exe into the ``robloxlauncherpatcher.exe`` and it will patch it.
+
+Forked from: <https://github.com/vdsk/gr2dpatcher>
