@@ -11,4 +11,7 @@ Follow the instructions here to build the application:\
 
 Drag RobloxPlayerLauncher.exe into the ``robloxlauncherpatcher.exe`` and it will patch it.
 
-Forked from:\ <https://github.com/vdsk/gr2dpatcher>
+## Credits
+
+Forked from: [vdsk]<https://github.com/vdsk/gr2dpatcher>
+Method found by: [AntiBoomz]<https://github.com/AntiBoomz>
